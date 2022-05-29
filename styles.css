@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    font-family: "Roboto Light", Roboto, Arial, sans-serif;
+    background-color: #282828;
+    grid-template-areas:
+    "nav main main main";
+}
+
+.sidenav {
+    grid-area: nav;
+    height: 100%;
+    width: border-box;
+    padding-top: 60px;
+    margin:0;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+}
+.mainContent {
+    grid-area: main;
+
+}
+.sidenav a:hover {
+    color: #a2a2a2;
+}
+
+h1 {
+    text-align: center;
+    margin: 1.25rem 0 0.25rem 0;
+    color: #fff;
+}
+
+.chart-container {
+    position: relative;
+    width: 45vw;
+    margin: auto;
+    padding: 0;
+}
+
+canvas {
+    color: #fff;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
