@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchData();
 })
 
-function fetchData() {
-    fetch("https://ghibliapi.herokuapp.com/films")
+async function fetchData() {
+    await fetch("https://ghibliapi.herokuapp.com/films")
         .then(function (response) {
             if (!response.ok) {
                 console.log("unsuccessful");
@@ -13,7 +13,8 @@ function fetchData() {
         })
         .then(function (data) {
             console.log("successful");
-            showChart(data)
+            showChart(data);
+            showTable(data);
         })
         .catch(function (error) {
             console.log(error);
@@ -26,9 +27,8 @@ Chart.defaults.family = "'Roboto Light', Roboto, Arial, sans-serif";
 function showChart(e) {
     let listOfRandomColors = Array.from({length: e.length}, () => "#" + Math.floor(
         Math.random() * 16777215).toString(16));
-    console.log(listOfRandomColors)
     const ctx = document.getElementById('myChart');
-    const myChart = new Chart(ctx, {
+    new Chart(ctx, {
         type: 'bar', //polarArea, bar, line
         data: {
             labels: e.map(film => film.title),
@@ -47,7 +47,15 @@ function showChart(e) {
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        color: "#777777"
+                    }
+                },
+                x: {
+                    grid: {
+                        color: "#777777"
+                    }
                 }
             },
             plugins: {
@@ -66,6 +74,46 @@ function showChart(e) {
             }
         }
     });
-
 }
+function showTable(e) {
+    e.forEach((film) => {
+        const titles = film.title;
+        const scores = film.rt_score;
+        const years = film.release_date;
+        const directors = film.director;
 
+        // let listTitles = [];
+        // titles.forEach(function (el) {
+        //     listTitles.push("<td>" + el + "</td>")
+        // });
+        //
+        // let listYears = [];
+        // years.forEach(function (el) {
+        //     listYears.push("<td>" + el + "</td>")
+        // });
+        //
+        // let listDirs = [];
+        // directors.forEach(function (el) {
+        //     listDirs.push("<td>" + el + "</td>")
+        // });
+        //
+        // let listScores = [];
+        // scores.forEach(function (el) {
+        //     listScores.push("<td>" + el + "</td>")
+        // });
+
+        const elem = document.createElement('tr');
+        elem.className = "rows";
+        elem.innerHTML = `
+            <tr>
+                <td>${titles}</td>
+                <td>${years}</td> 
+                <td>${directors}</td>
+                <td>${scores}</td>
+            </tr>
+        `
+        document.getElementById('tableContent').appendChild(elem);
+
+
+    })
+}

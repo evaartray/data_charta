@@ -26,20 +26,34 @@ body {
     font-size: 25px;
     color: #ffffff;
     display: block;
-    transition: 0.3s;
 }
 .mainContent {
     grid-area: main;
+    color: #fff;
 
+    font-size: 18px;
+    text-align: center;
 }
+.social {
+    display: grid;
+}
+.social a{
+    padding: 30px;
+    text-decoration: underline #ffe800;
+    color: #ffffff;
+}
+.gif {
+    width: 100%;
+}
+
 .sidenav a:hover {
-    color: #a2a2a2;
+    color: #ffe800;
 }
 
 h1 {
     text-align: center;
     margin: 1.25rem 0 0.25rem 0;
-    color: #fff;
+    color: #ffe800;
 }
 
 .chart-container {
@@ -53,12 +67,15 @@ canvas {
     color: #fff;
 }
 
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
-    }
-
-    .sidenav a {
-        font-size: 18px;
-    }
+.tableContent {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    text-align: center;
+    padding-right: 40px;
+    margin: 0;
 }
+table, tr,  th, td {
+    border:1px solid #a2a2a2
+}
+
